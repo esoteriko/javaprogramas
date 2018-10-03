@@ -11,10 +11,10 @@ public class Ejemplo extends JFrame
     //Variables
     private JButton botonDeAccion,botonDeSalir;
     private JPanel panelDeSalida,panelDeEntrada;
-    private JTextField texto1, texto2, texto1A,texto2A; 
-    private JLabel etiqueta1,etiqueta2, etiqueta1A, etiqueta2A;
+    private JTextField texto1, texto2,texto3, texto1A,texto2A; 
+    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A;
     private GridLayout gl,gl1;
-    private String peso,estatura;
+    private String peso,estatura,edad;
     private Double total;
     
     public static void main(String[] args) {
@@ -74,6 +74,12 @@ public class Ejemplo extends JFrame
 	texto2 = new JTextField(10);
 	panelDeEntrada.add(texto2);
 
+    etiqueta3 = new JLabel("Edad");
+    panelDeEntrada.add(etiqueta3);
+    
+    texto3 = new JTextField(10);
+    panelDeEntrada.add(texto3);
+
 	//etiqueta3 = new JLabel("Talla: ");
 	//panel2.add(etiqueta3);
 
@@ -99,13 +105,18 @@ public class Ejemplo extends JFrame
 
         peso = texto1.getText();
         estatura = texto2.getText();
+        edad = texto3.getText();
 
         double a = Double.parseDouble(peso);
         double a1 = Double.parseDouble(estatura);
+        double a2 = Double.paseDouble(edad);
         total = a/((a1)*(a1));
         String imc = String.valueOf(total);
         
         texto1A.setText(imc);
+        if(a2 => 15 && total <= 18){
+            
+        }
     }
     if (evento == botonDeSalir){
         System.exit(0);
