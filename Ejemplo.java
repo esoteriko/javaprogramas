@@ -11,10 +11,10 @@
 
 	    //Variables
 	    private JButton botonDeAccion,botonDeSalir;
-	    private JPanel panelDeSalida,panelDeEntrada,panel1;
+	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2;
 	    private JTextField texto1, texto2,texto3; 
-	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2;
-	    private GridLayout gl,gl1;
+	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3,p4;
+	    private GridLayout gl,gl1, gl2;
 	    private String peso,estatura,edad;
 	    private Double total;
 	    
@@ -51,12 +51,31 @@
         salida2 = new JLabel();
         panel1.add(salida2);
 
-	        //Panel 1
+             //Panel 2
+        panel2 = new JPanel();
+        panel2.setPreferredSize(new Dimension(250, 50));
+        panel2.setBackground(new java.awt.Color(110,125,172));
+
+        gl2 = new GridLayout(1,1);
+        gl2.setHgap(0); gl2.setVgap(5);
+        panel2.setLayout(gl1);
+
+        p3 = new JLabel("Debes bajar:");
+        panel2.add(p3);
+
+        salida3 = new JLabel();
+        panel2.add(salida3);
+
+        //p4 = new JLabel("para estar en tu peso ideal");
+        //panel2.add(p4);
+
+	        //Panel de Salida
 		panelDeSalida = new JPanel();
 		panelDeSalida.setPreferredSize(new Dimension(400, 400));
 		panelDeSalida.setBackground(new java.awt.Color( 110, 125, 172 ));
 		ventana.add(panelDeSalida);
 		panelDeSalida.add(panel1);
+		panelDeSalida.add(panel2);
 
 	    /*gl1 = new GridLayout(8,2);
 	    gl1.setHgap(100); gl1.setVgap(10);
