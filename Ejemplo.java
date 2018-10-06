@@ -10,12 +10,12 @@
 	    implements ActionListener {
 
 	    //Variables
-	    private JButton botonDeAccion,botonDeSalir;
-	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2;
+	    private JButton botonDeAccion,botonDeSalir, botonDeTabla;
+	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3;
 	    private JTextField texto1, texto2,texto3; 
-	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3,p4;
+	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
 	    private GridLayout gl,gl1, gl2;
-	    private String peso,estatura,edad;
+	    private String peso,estatura,nombre;
 	    private Double total;
 	    
 	    public static void main(String[] args) {
@@ -32,12 +32,12 @@
 
 	        //Panel 1
         panel1 = new JPanel();
-        panel1.setPreferredSize(new Dimension(250, 50));
-        panel1.setBackground(new java.awt.Color( 110, 125, 172 ));
+        panel1.setPreferredSize(new Dimension(250, 350));
+        //panel1.setBackground(new java.awt.Color( 110, 125, 172 ));
     
-        gl1 = new GridLayout(2,2);
-        panel1.setLayout(gl1);
-        gl1.setHgap(0); gl1.setVgap(5);
+        gl = new GridLayout(6,1);
+        panel1.setLayout(gl);
+        gl.setHgap(0); gl.setVgap(5);
 
         p = new JLabel("IMC:");
         panel1.add(p);
@@ -45,29 +45,63 @@
         salida1 = new JLabel();
         panel1.add(salida1);
 
-        p2 = new JLabel("Estado:");
+        p2 = new JLabel("Nivel de peso:");
         panel1.add(p2);
 
         salida2 = new JLabel();
         panel1.add(salida2);
+
+        p3 = new JLabel("Nombre:");
+        panel1.add(p3);
+
+        salida3 = new JLabel();
+        panel1.add(salida3);
+
 
              //Panel 2
         panel2 = new JPanel();
         panel2.setPreferredSize(new Dimension(250, 50));
         panel2.setBackground(new java.awt.Color(110,125,172));
 
-        gl2 = new GridLayout(1,1);
-        gl2.setHgap(0); gl2.setVgap(5);
+        gl1 = new GridLayout(2,2);
+        panel1.setLayout(gl1);
+        gl1.setHgap(0); gl1.setVgap(5);
         panel2.setLayout(gl1);
 
-        p3 = new JLabel("Debes bajar:");
-        panel2.add(p3);
+        etiqueta1 = new JLabel("Peso: ");
+		panel2.add(etiqueta1);
 
-        salida3 = new JLabel();
-        panel2.add(salida3);
+		texto1 = new JTextField(10);
+	    panel2.add(texto1);
 
-        //p4 = new JLabel("para estar en tu peso ideal");
-        //panel2.add(p4);
+		etiqueta2 = new JLabel("Estatura: ");
+		panel2.add(etiqueta2);
+
+		texto2 = new JTextField(10);
+		panel2.add(texto2);
+
+		     //Panel 3
+		panel3 = new JPanel();
+		panel3.setPreferredSize(new Dimension(250,50));
+		panel3.setBackground(new java.awt.Color(110,125,172));
+
+		gl2 = new GridLayout(2,2);
+        gl2.setHgap(0); gl2.setVgap(5);
+		panel3.setLayout(gl2);
+
+		etiqueta3 = new JLabel("Nombre:");
+	    panel3.add(etiqueta3);
+	    
+	    texto3 = new JTextField(10);
+	    panel3.add(texto3);
+
+	    botonDeAccion = new JButton("Calcular");
+	    botonDeAccion.addActionListener(this);
+	    panel3.add(botonDeAccion);
+
+	    botonDeTabla = new JButton("Tabla IMC");
+	    botonDeTabla.addActionListener(this);
+	    panel3.add(botonDeTabla);
 
 	        //Panel de Salida
 		panelDeSalida = new JPanel();
@@ -75,51 +109,16 @@
 		panelDeSalida.setBackground(new java.awt.Color( 110, 125, 172 ));
 		ventana.add(panelDeSalida);
 		panelDeSalida.add(panel1);
-		panelDeSalida.add(panel2);
 
-	    /*gl1 = new GridLayout(8,2);
-	    gl1.setHgap(100); gl1.setVgap(10);
-	    panel1.setLayout(gl1);*/
-
-	        //Panel 2
+	        //Panel de Entrada
 		panelDeEntrada = new JPanel();
 		panelDeEntrada.setPreferredSize(new Dimension(400, 400));
 		panelDeEntrada.setBackground(new java.awt.Color( 110, 125, 172 ));
 	    ventana.add(panelDeEntrada);
+	    panelDeEntrada.add(panel2);
+	    panelDeEntrada.add(panel3);
 
-	    /*layout
-	    gl = new GridLayout(3,2);
-	    gl.setHgap(10); gl.setVgap(150);
-	        //panel2.setLayout(gl);*/
-
-	    etiqueta1 = new JLabel("Peso: ");
-		panelDeEntrada.add(etiqueta1);
-
-		texto1 = new JTextField(10);
-	    panelDeEntrada.add(texto1);
-
-		etiqueta2 = new JLabel("Estatura: ");
-		panelDeEntrada.add(etiqueta2);
-
-		texto2 = new JTextField(10);
-		panelDeEntrada.add(texto2);
-
-	    etiqueta3 = new JLabel("Edad");
-	    panelDeEntrada.add(etiqueta3);
 	    
-	    texto3 = new JTextField(10);
-	    panelDeEntrada.add(texto3);
-
-		//etiqueta3 = new JLabel("Talla: ");
-		//panel2.add(etiqueta3);
-
-		//texto2 = new JTextField(10);
-		//panel2.add(texto2);
-
-	    botonDeAccion = new JButton("Calcular");
-	    botonDeAccion.addActionListener(this);
-	    panelDeEntrada.add(botonDeAccion);
-
 
 	    //Botones
 	    
@@ -135,11 +134,10 @@
 
 	        peso = texto1.getText();
 	        estatura = texto2.getText();
-	        edad = texto3.getText();
+	        nombre = texto3.getText();
 
 	        double a = Double.parseDouble(peso);
 	        double a1 = Double.parseDouble(estatura);
-	        double a2 = Double.parseDouble(edad);
 	        total = a/((a1)*(a1));
 	        if (total >= 0 && total <= 5){
 	        	salida2.setText("DelgadezIII");
@@ -167,6 +165,8 @@
 	        }
 	        String imc = String.valueOf(total);
 	        salida1.setText(imc);
+	        salida3.setText(nombre);
+	        
 	       
 	    }
 	    if (evento == botonDeSalir){
