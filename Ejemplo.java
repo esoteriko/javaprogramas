@@ -11,10 +11,10 @@
 
 	    //Variables
 	    private JButton botonDeAccion,botonDeSalir, botonDeTabla;
-	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3;
+	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5;
 	    private JTextField texto1, texto2,texto3; 
 	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
-	    private GridLayout gl,gl1, gl2;
+	    private GridLayout gl,gl1, gl2, gl3;
 	    private String peso,estatura,nombre;
 	    private Double total;
 	    
@@ -32,25 +32,13 @@
 
 	        //Panel 1
         panel1 = new JPanel();
-        panel1.setPreferredSize(new Dimension(250, 350));
-        //panel1.setBackground(new java.awt.Color( 110, 125, 172 ));
+        panel1.setPreferredSize(new Dimension(250, 50));
+        panel1.setBackground(new java.awt.Color( 110, 125, 172 ));
     
-        gl = new GridLayout(6,1);
+        gl = new GridLayout(1,2);
         panel1.setLayout(gl);
-        gl.setHgap(0); gl.setVgap(5);
-
-        p = new JLabel("IMC:");
-        panel1.add(p);
-
-        salida1 = new JLabel();
-        panel1.add(salida1);
-
-        p2 = new JLabel("Nivel de peso:");
-        panel1.add(p2);
-
-        salida2 = new JLabel();
-        panel1.add(salida2);
-
+        
+       
         p3 = new JLabel("Nombre:");
         panel1.add(p3);
 
@@ -103,11 +91,40 @@
 	    botonDeTabla.addActionListener(this);
 	    panel3.add(botonDeTabla);
 
+	        //Panel 4
+	    panel4 = new JPanel();
+        panel4.setPreferredSize(new Dimension(250, 50));
+        panel4.setBackground(new java.awt.Color(110,125,172));
+
+        gl3 = new GridLayout(1,2);
+        panel4.setLayout(gl3);
+
+        p = new JLabel("IMC:");
+        panel4.add(p);
+
+        salida1 = new JLabel();
+        panel4.add(salida1);
+
+            //Pnel 5
+        panel5 = new JPanel();
+        panel5.setPreferredSize(new Dimension(250, 50));
+        panel5.setBackground(new java.awt.Color(110,125,172));
+
+        panel5.setLayout(gl3);
+
+        p2 = new JLabel("Nivel de peso:");
+        panel5.add(p2);
+
+        salida2 = new JLabel();
+        panel5.add(salida2);
+
 	        //Panel de Salida
 		panelDeSalida = new JPanel();
 		panelDeSalida.setPreferredSize(new Dimension(400, 400));
 		panelDeSalida.setBackground(new java.awt.Color( 110, 125, 172 ));
-		ventana.add(panelDeSalida);
+		ventana.add(panelDeSalida);		
+		panelDeSalida.add(panel4);
+		panelDeSalida.add(panel5);
 		panelDeSalida.add(panel1);
 
 	        //Panel de Entrada
