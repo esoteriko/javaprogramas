@@ -144,14 +144,19 @@
 	    botonDeSalir.addActionListener(this);
 		ventana.add(botonDeSalir);
 	    }
+		
+		
 
 	    public void actionPerformed(ActionEvent event) {
 	    Object evento = event.getSource();
-	    if (evento == botonDeAccion){
-
-	        peso = texto1.getText();
+		    peso = texto1.getText();
 	        estatura = texto2.getText();
 	        nombre = texto3.getText();
+			
+	    if (evento == botonDeAccion){
+			
+			if (inNumerico(peso)){
+	       
 
 	        double a = Double.parseDouble(peso);
 	        double a1 = Double.parseDouble(estatura);
@@ -186,8 +191,24 @@
 	        
 	       
 	    }
+		}
 	    if (evento == botonDeSalir){
 	        System.exit(0);
-	    } 	
+	    } 
+		
+		public static boolean inNumerico (String str){
+		try(
+		double d = Double.parseDouble(str);
+		if (d<=0 ){
+			return false;
+		}
+		}
+		
+		catch (NumberFormException nfe){
+			return flase;
+		}
+		return true;
+		}
+		
 	    }
 	}
