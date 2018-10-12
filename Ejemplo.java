@@ -1,28 +1,25 @@
-
-	/*Bibliotecas*/
-	import java.awt.*;
+    import java.awt.*;
 	import java.awt.event.*;
 	import javax.swing.*;
-
-
 
 	public class Ejemplo extends JFrame 
 	    implements ActionListener {
 
 	    //Variables
-	    private JButton botonDeAccion,botonDeSalir, botonDeTabla;
+	    private JButton botonDeAccion,botonDeSalir, botonLimpiar;
 	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5;
 	    private JTextField texto1, texto2,texto3; 
 	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
 	    private GridLayout gl,gl1, gl2, gl3;
 	    private String peso,estatura,nombre;
-	    private Double total;
+	    private Double total,a,a1;
+	    private Integer i;
 	    
 	    public static void main(String[] args) {
 	    	Ejemplo marco = new Ejemplo();
 	        marco.setSize(1000, 800);
 	        marco.crearPA();
-	        marco.setVisible(true);
+	        marco.setVisible(true);	     
 	    }
 
 	    private void crearPA() {
@@ -87,9 +84,9 @@
 	    botonDeAccion.addActionListener(this);
 	    panel3.add(botonDeAccion);
 
-	    botonDeTabla = new JButton("Tabla IMC");
-	    botonDeTabla.addActionListener(this);
-	    panel3.add(botonDeTabla);
+	    botonLimpiar = new JButton("Limpiar");
+	    botonLimpiar.addActionListener(this);
+	    panel3.add(botonLimpiar);
 
 	        //Panel 4
 	    panel4 = new JPanel();
@@ -152,13 +149,25 @@
 		    peso = texto1.getText();
 	        estatura = texto2.getText();
 	        nombre = texto3.getText();
-			
-	    if (evento == botonDeAccion){
-			
-			
-	       
 
-	        
+
+	    if (evento == botonDeSalir){
+	        System.exit(0);
+	    } 
+
+	    if(evento == botonLimpiar){
+	    	for(int i=0; panelDeEntrada.getComponents().length>i;i++){
+	    		if(panelDeEntrada.getComponents()[i]instanceof JTextField){
+	    			((JTextField)panelDeEntrada.getComponents()[i]).setText("");
+	    		}
+	    	}
+	    }
+	    //Condiconal del metodo de validacion
+	    if (isNumerico(peso, estatura)){
+			
+	      if (evento == botonDeAccion){
+							    
+	        double a = Double.parseDouble(peso);
 	        double a1 = Double.parseDouble(estatura);
 	        total = a/((a1)*(a1));
 	        if (total >= 0 && total <= 5){
@@ -187,40 +196,25 @@
 	        }
 	        String imc = String.valueOf(total);
 	        salida1.setText(imc);
-	        salida3.setText(nombre);
-	        
-	       
-	    
-		}
-	    if (evento == botonDeSalir){
-	        System.exit(0);
-	    } 
-		
-		/*public static boolean inNumerico (String str){
-		try{
-		double d = Double.parseDouble(str);
-		if (d<=0 ){
-			return false;
-		}
-		}
-		
-		catch (NumberFormException nfe){
-			return false;
-		}
-		return true;
-		}*/
+	        salida3.setText(nombre);	         
+	      }
+		}	    
 		
 	    }
-	  public static Boolean inNumerico(String peso){
+      //metodo
+	  public static Boolean isNumerico(String peso, String estatura){
 	  	try {
       	double a = Double.parseDouble(peso);
-      	if (a <= 0){
-      		return true;
+      	double a1 = Double.parseDouble(estatura);
+      	if (a <= 0 && a1 <= 0){
+      		return true;      		
       	}
       }
         catch(NumberFormatException nfe){
+        	JOptionPane.showMessageDialog(null, "El peso o la altura no son numeros");
       	    return false;
         }
+        return true;
       }
 
 	}
