@@ -155,10 +155,10 @@
 			
 	    if (evento == botonDeAccion){
 			
-			if (inNumerico(peso)){
+			
 	       
 
-	        double a = Double.parseDouble(peso);
+	        
 	        double a1 = Double.parseDouble(estatura);
 	        total = a/((a1)*(a1));
 	        if (total >= 0 && total <= 5){
@@ -190,14 +190,14 @@
 	        salida3.setText(nombre);
 	        
 	       
-	    }
+	    
 		}
 	    if (evento == botonDeSalir){
 	        System.exit(0);
 	    } 
 		
-		public static boolean inNumerico (String str){
-		try(
+		/*public static boolean inNumerico (String str){
+		try{
 		double d = Double.parseDouble(str);
 		if (d<=0 ){
 			return false;
@@ -205,10 +205,22 @@
 		}
 		
 		catch (NumberFormException nfe){
-			return flase;
+			return false;
 		}
 		return true;
-		}
+		}*/
 		
 	    }
+	  public static Boolean inNumerico(String peso){
+	  	try {
+      	double a = Double.parseDouble(peso);
+      	if (a <= 0){
+      		return true;
+      	}
+      }
+        catch(NumberFormatException nfe){
+      	    return false;
+        }
+      }
+
 	}
