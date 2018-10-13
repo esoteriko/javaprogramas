@@ -6,15 +6,16 @@
 	    implements ActionListener {
 
 	    //Variables
-	    private JButton botonDeAccion,botonDeSalir, botonLimpiar;
+	    private JButton botonDeAccion,botonDeSalir, botonLimpiar, botonDeBorrar;
 	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5;
 	    private JTextField texto1, texto2,texto3; 
 	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
 	    private GridLayout gl,gl1, gl2, gl3;
 	    private String peso,estatura,nombre;
 	    private Double total,a,a1;
-	    private Integer i;
 	    
+	    
+	   
 	    public static void main(String[] args) {
 	    	Ejemplo marco = new Ejemplo();
 	        marco.setSize(1000, 800);
@@ -26,7 +27,7 @@
 	        setDefaultCloseOperation(EXIT_ON_CLOSE);
 	        Container ventana = getContentPane();
 	        ventana.setLayout(new FlowLayout() );
-
+	           
 	        //Panel 1
         panel1 = new JPanel();
         panel1.setPreferredSize(new Dimension(250, 50));
@@ -53,15 +54,15 @@
         gl1.setHgap(0); gl1.setVgap(5);
         panel2.setLayout(gl1);
 
-        etiqueta1 = new JLabel("Peso: ");
-		panel2.add(etiqueta1);
+        etiqueta3 = new JLabel("Nombre:");
+	    panel2.add(etiqueta3);
 
 		texto1 = new JTextField(10);
 	    panel2.add(texto1);
 
-		etiqueta2 = new JLabel("Estatura: ");
-		panel2.add(etiqueta2);
-
+	    etiqueta1 = new JLabel("Peso: ");
+		panel2.add(etiqueta1);
+		
 		texto2 = new JTextField(10);
 		panel2.add(texto2);
 
@@ -74,9 +75,9 @@
         gl2.setHgap(0); gl2.setVgap(5);
 		panel3.setLayout(gl2);
 
-		etiqueta3 = new JLabel("Nombre:");
-	    panel3.add(etiqueta3);
-	    
+		etiqueta2 = new JLabel("Estatura: ");
+		panel3.add(etiqueta2);
+			    
 	    texto3 = new JTextField(10);
 	    panel3.add(texto3);
 
@@ -84,9 +85,6 @@
 	    botonDeAccion.addActionListener(this);
 	    panel3.add(botonDeAccion);
 
-	    botonLimpiar = new JButton("Limpiar");
-	    botonLimpiar.addActionListener(this);
-	    panel3.add(botonLimpiar);
 
 	        //Panel 4
 	    panel4 = new JPanel();
@@ -140,29 +138,33 @@
 	    botonDeSalir = new JButton("Salir"); 
 	    botonDeSalir.addActionListener(this);
 		ventana.add(botonDeSalir);
-	    }
-		
-		
 
+		botonDeBorrar = new JButton("Borrar");
+		botonDeBorrar.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ev) 
+			{
+				clearTxtField();
+			}
+		});
+		panel3.add(botonDeBorrar);
+
+	    }
+				
 	    public void actionPerformed(ActionEvent event) {
 	    Object evento = event.getSource();
-		    peso = texto1.getText();
-	        estatura = texto2.getText();
-	        nombre = texto3.getText();
+		    nombre = texto1.getText();
+		    peso = texto2.getText();
+	        estatura = texto3.getText();
+	        
 
 
 	    if (evento == botonDeSalir){
 	        System.exit(0);
 	    } 
 
-	    if(evento == botonLimpiar){
-	    	for(int i=0; panelDeEntrada.getComponents().length>i;i++){
-	    		if(panelDeEntrada.getComponents()[i]instanceof JTextField){
-	    			((JTextField)panelDeEntrada.getComponents()[i]).setText("");
-	    		}
-	    	}
-	    }
 	    //Condiconal del metodo de validacion
+	    
 	    if (isNumerico(peso, estatura)){
 			
 	      if (evento == botonDeAccion){
@@ -201,7 +203,7 @@
 		}	    
 		
 	    }
-      //metodo
+      //metodos
 	  public static Boolean isNumerico(String peso, String estatura){
 	  	try {
       	double a = Double.parseDouble(peso);
@@ -216,5 +218,12 @@
         }
         return true;
       }
+
+      public void clearTxtField() {      
+		texto1.setText("");
+		texto2.setText("");
+		texto3.setText("");
+	}
+
 
 	}
