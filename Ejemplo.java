@@ -1,4 +1,4 @@
-    import java.awt.*;
+   import java.awt.*;
 	import java.awt.event.*;
 	import javax.swing.*;
 
@@ -6,8 +6,8 @@
 	    implements ActionListener {
 
 	    //Variables
-	    private JButton botonDeAccion,botonDeSalir, botonLimpiar, botonDeBorrar;
-	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5;
+	    private JButton botonDeAccion,botonDeSalir, botonDeTabla, botonDeBorrar;
+	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5, panel6;
 	    private JTextField texto1, texto2,texto3; 
 	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
 	    private GridLayout gl,gl1, gl2, gl3;
@@ -112,6 +112,13 @@
 
         salida2 = new JLabel();
         panel5.add(salida2);
+        
+            //panel 6
+        panel6 = new JPanel();
+        panel6.setPreferredSize(new Dimension(300,225));
+        panel6.setBackground(new java.awt.Color( 110, 125, 172 ));
+        
+        
 
 	        //Panel de Salida
 		panelDeSalida = new JPanel();
@@ -121,6 +128,7 @@
 		panelDeSalida.add(panel4);
 		panelDeSalida.add(panel5);
 		panelDeSalida.add(panel1);
+		panelDeSalida.add(panel6);
 
 	        //Panel de Entrada
 		panelDeEntrada = new JPanel();
@@ -148,6 +156,65 @@
 			}
 		});
 		panel3.add(botonDeBorrar);
+		
+		botonDeTabla = new JButton ("Tabla");
+		botonDeTabla.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				 //Object origen = e.getSource();
+				Graphics papel = panel6.getGraphics(); 
+			    papel.setColor(Color.black);
+			    papel.drawLine(0, 60, 500, 40);
+
+	       	      Font encabezado =new Font("Times New Roman",1,10);
+
+	       		papel.setFont(encabezado);
+
+	       		papel.drawString("Indice de Masa Corporal", 75, 20);
+
+	       		//Categoria en la cual entra el paciente debido a su indice de masa corporal
+
+	       		papel.drawString("Categoria",40, 60);
+
+	       		papel.drawString("Peso Insuficiente", 40, 80);
+
+	       		papel.drawString("Peso Normal",40 , 100);
+
+	       		papel.drawString("Sobrepeso Grado I", 40, 120);
+
+	       		papel.drawString("Sobrepeso Grado II", 40, 140);
+
+	       		papel.drawString("Obesidad tipo I", 40, 160);
+
+	       		papel.drawString("Obesidad tipo II", 40, 180);
+
+	       		papel.drawString("Obesidad tipo III", 40, 200);
+
+	       		papel.drawString("Obesidad tipo IV", 40, 220);
+
+	            //Imc
+
+	       		papel.drawString("IMC",160, 60);
+
+	       		papel.drawString("<18.5", 160, 80);
+
+	       		papel.drawString("≥18.5 ≤24.9  ",160 , 100);
+
+	       		papel.drawString("≥25   ≤26.9", 160, 120);
+
+	       		papel.drawString("≥27   ≤29.9", 160, 140);
+
+	       		papel.drawString("≥30   ≤34.9", 160, 160);
+
+	       		papel.drawString("≥35   ≤39.9", 160, 180);
+
+	       		papel.drawString("≥40   ≤49.9", 160, 200);
+
+	       		papel.drawString(">50", 160, 220);
+			}			
+		});
+		
+		ventana.add(botonDeTabla);
 
 	    }
 				
@@ -226,4 +293,4 @@
 	}
 
 
-	}
+}
