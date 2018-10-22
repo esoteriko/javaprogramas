@@ -1,6 +1,7 @@
    import java.awt.*;
 	import java.awt.event.*;
 	import javax.swing.*;
+	import java.lang.Math;
 
 	public class Ejemplo extends JFrame 
 	    implements ActionListener {
@@ -153,51 +154,51 @@
 			    papel.setColor(Color.black);
 			    //papel.drawLine(0, 60, 500, 40);
 
-	       	      Font encabezado =new Font("Arial",1,10);
+	       	      Font encabezado =new Font("Arial",1,15);
 
 	       		papel.setFont(encabezado);
 
-	       		papel.drawString("Indice de Masa Corporal", 75, 20);
+	       		papel.drawString("Indice de Masa Corporal", 120, 20);
 
 	       		//Categoria en la cual entra el paciente debido a su indice de masa corporal
 
 	       		papel.drawString("Categoria",40, 60);
 
-	       		papel.drawString("Peso Insuficiente", 40, 80);
+	       		papel.drawString("Peso Insuficiente", 40, 100);
 
-	       		papel.drawString("Peso Normal",40 , 100);
+	       		papel.drawString("Peso Normal", 40, 140);
 
-	       		papel.drawString("Sobrepeso Grado I", 40, 120);
+	       		papel.drawString("Sobrepeso Grado I", 40, 180);
 
-	       		papel.drawString("Sobrepeso Grado II", 40, 140);
+	       		papel.drawString("Sobrepeso Grado II", 40, 220);
 
-	       		papel.drawString("Obesidad tipo I", 40, 160);
+	       		papel.drawString("Obesidad tipo I", 40, 260);
 
-	       		papel.drawString("Obesidad tipo II", 40, 180);
+	       		papel.drawString("Obesidad tipo II", 40, 300);
 
-	       		papel.drawString("Obesidad tipo III", 40, 200);
+	       		papel.drawString("Obesidad tipo III", 40, 340);
 
-	       		papel.drawString("Obesidad tipo IV", 40, 220);
+	       		papel.drawString("Obesidad tipo IV", 40, 380);
 
 	            //Imc
 
-	       		papel.drawString("IMC",160, 60);
+	       		papel.drawString("IMC",280, 60);
 
-	       		papel.drawString("<18.5", 160, 80);
+	       		papel.drawString("<18.5", 280, 100);
 
-	       		papel.drawString("≥18.5 ≤24.9  ",160 , 100);
+	       		papel.drawString("≥18.5 ≤24.9  ", 280, 140);
 
-	       		papel.drawString("≥25   ≤26.9", 160, 120);
+	       		papel.drawString("≥25   ≤26.9", 280, 180);
 
-	       		papel.drawString("≥27   ≤29.9", 160, 140);
+	       		papel.drawString("≥27   ≤29.9", 280, 220);
 
-	       		papel.drawString("≥30   ≤34.9", 160, 160);
+	       		papel.drawString("≥30   ≤34.9", 280, 260);
 
-	       		papel.drawString("≥35   ≤39.9", 160, 180);
+	       		papel.drawString("≥35   ≤39.9", 280, 300);
 
-	       		papel.drawString("≥40   ≤49.9", 160, 200);
+	       		papel.drawString("≥40   ≤49.9", 280, 340);
 
-	       		papel.drawString(">50", 160, 220);
+	       		papel.drawString(">50", 280, 380);
 			}			
 		});
 		
@@ -230,7 +231,7 @@
 	            a2 = 19*((a1)*(a1));
 	            a2 = a2-a;    
 	        	salida2.setText("Delgadez III");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Subir");
 	        }
@@ -238,7 +239,7 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a2-a; 
 	        	salida2.setText("Delgadez II");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Subir");
 	        }
@@ -246,7 +247,7 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a2-a; 
 	        	salida2.setText("Delgadez I");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Subir");
 	        }
@@ -258,7 +259,7 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a-a2; 
 	        	salida2.setText("Sobrepeso");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Bajar");
 	        }
@@ -266,7 +267,7 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a-a2;
 	        	salida2.setText("Obesidad I");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Bajar");
 	        }
@@ -274,7 +275,7 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a-a2;
 	        	salida2.setText("Obesidad II");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Bajar");
 	        }
@@ -282,12 +283,12 @@
 	        	a2 = 19*((a1)*(a1));
 	        	a2 = a-a2;
 	        	salida2.setText("Obesidad III");
-	        	String pesoBajar = String.valueOf(a2);
+	        	String pesoBajar = String.valueOf(Math.ceil(a2));
 	        	salida4.setText(pesoBajar);
 	        	p4.setText("Peso a Bajar");
 	        }
-	        int numero = (int)total;
-	        String imc = String.valueOf(numero);
+	        
+	        String imc = String.valueOf(Math.ceil(total));
 	        salida1.setText(imc);
 	        salida3.setText(nombre);	         
 	      }
