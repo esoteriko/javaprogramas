@@ -7,12 +7,13 @@
 
 	    //Variables
 	    private JButton botonDeAccion,botonDeSalir, botonDeTabla, botonDeBorrar;
-	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3, panel4, panel5, panel6;
+	    private JPanel panelDeSalida,panelDeEntrada,panel1, panel2, panel3;
 	    private JTextField texto1, texto2,texto3; 
-	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,p,p2,p3;
-	    private GridLayout gl,gl1, gl2, gl3;
-	    private String peso,estatura,nombre;
-	    private Double total,a,a1;
+	    private JLabel etiqueta1,etiqueta2,etiqueta3, etiqueta1A, etiqueta2A,salida1, salida2, salida3,salida4,p,p2,p3,p4;
+	    private GridLayout gl,gl1, gl2;
+	    private String peso,estatura,nombre, pesoBajar;
+	    private Double total,a,a1, a2;
+	    private Integer numero;
 	    
 	    
 	   
@@ -30,18 +31,38 @@
 	           
 	        //Panel 1
         panel1 = new JPanel();
-        panel1.setPreferredSize(new Dimension(250, 50));
+        panel1.setPreferredSize(new Dimension(250, 120));
         panel1.setBackground(new java.awt.Color( 110, 125, 172 ));
     
-        gl = new GridLayout(1,2);
+        gl = new GridLayout(4,2,0,20);
+        //gl.setHgap(20); gl.setVgap(20);
         panel1.setLayout(gl);
+
         
        
-        p3 = new JLabel("Nombre:");
+        p3 = new JLabel("Nombre:");      
         panel1.add(p3);
 
         salida3 = new JLabel();
         panel1.add(salida3);
+       
+        p = new JLabel("IMC:");
+        panel1.add(p);
+
+        salida1 = new JLabel();
+        panel1.add(salida1);
+
+         p2 = new JLabel("Nivel de peso:");
+        panel1.add(p2);
+
+        salida2 = new JLabel();
+        panel1.add(salida2);
+
+        p4 = new JLabel("Peso ideal");
+        panel1.add(p4);
+
+        salida4 = new JLabel();
+        panel1.add(salida4);
 
 
              //Panel 2
@@ -50,7 +71,7 @@
         panel2.setBackground(new java.awt.Color(110,125,172));
 
         gl1 = new GridLayout(2,2);
-        panel1.setLayout(gl1);
+        
         gl1.setHgap(0); gl1.setVgap(5);
         panel2.setLayout(gl1);
 
@@ -83,52 +104,16 @@
 
 	    botonDeAccion = new JButton("Calcular");
 	    botonDeAccion.addActionListener(this);
-	    panel3.add(botonDeAccion);
-
-
-	        //Panel 4
-	    panel4 = new JPanel();
-        panel4.setPreferredSize(new Dimension(250, 50));
-        panel4.setBackground(new java.awt.Color(110,125,172));
-
-        gl3 = new GridLayout(1,2);
-        panel4.setLayout(gl3);
-
-        p = new JLabel("IMC:");
-        panel4.add(p);
-
-        salida1 = new JLabel();
-        panel4.add(salida1);
-
-            //Pnel 5
-        panel5 = new JPanel();
-        panel5.setPreferredSize(new Dimension(250, 50));
-        panel5.setBackground(new java.awt.Color(110,125,172));
-
-        panel5.setLayout(gl3);
-
-        p2 = new JLabel("Nivel de peso:");
-        panel5.add(p2);
-
-        salida2 = new JLabel();
-        panel5.add(salida2);
-        
-            //panel 6
-        panel6 = new JPanel();
-        panel6.setPreferredSize(new Dimension(300,225));
-        panel6.setBackground(new java.awt.Color( 110, 125, 172 ));
-        
-        
+	    panel3.add(botonDeAccion);                 
 
 	        //Panel de Salida
 		panelDeSalida = new JPanel();
 		panelDeSalida.setPreferredSize(new Dimension(400, 400));
 		panelDeSalida.setBackground(new java.awt.Color( 110, 125, 172 ));
-		ventana.add(panelDeSalida);		
-		panelDeSalida.add(panel4);
-		panelDeSalida.add(panel5);
-		panelDeSalida.add(panel1);
-		panelDeSalida.add(panel6);
+		ventana.add(panelDeSalida);
+		Graphics papel1 = panelDeSalida.getGraphics();
+		
+		
 
 	        //Panel de Entrada
 		panelDeEntrada = new JPanel();
@@ -137,6 +122,8 @@
 	    ventana.add(panelDeEntrada);
 	    panelDeEntrada.add(panel2);
 	    panelDeEntrada.add(panel3);
+	    panelDeEntrada.add(panel1);
+
 
 	    
 
@@ -162,11 +149,11 @@
 			public void actionPerformed(ActionEvent e)
 			{
 				 //Object origen = e.getSource();
-				Graphics papel = panel6.getGraphics(); 
+				Graphics papel = panelDeSalida.getGraphics(); 
 			    papel.setColor(Color.black);
-			    papel.drawLine(0, 60, 500, 40);
+			    //papel.drawLine(0, 60, 500, 40);
 
-	       	      Font encabezado =new Font("Times New Roman",1,10);
+	       	      Font encabezado =new Font("Arial",1,10);
 
 	       		papel.setFont(encabezado);
 
@@ -240,30 +227,67 @@
 	        double a1 = Double.parseDouble(estatura);
 	        total = a/((a1)*(a1));
 	        if (total >= 0 && total <= 5){
-	        	salida2.setText("DelgadezIII");
+	            a2 = 19*((a1)*(a1));
+	            a2 = a2-a;    
+	        	salida2.setText("Delgadez III");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Subir");
 	        }
 	        if (total >= 5 && total <= 10){
-	        	salida2.setText("DelgadezII");
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a2-a; 
+	        	salida2.setText("Delgadez II");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Subir");
 	        }
 	        if (total >= 10 && total <= 18.5){
-	        	salida2.setText("DelgadezI");
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a2-a; 
+	        	salida2.setText("Delgadez I");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Subir");
 	        }
 	        if (total >= 18.5 && total <= 24.9){
 	        	salida2.setText("Peso Normal");
+	        	salida4.setText("Peso Normal");
 	        }
 	        if (total >= 25 && total <= 29.9){
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a-a2; 
 	        	salida2.setText("Sobrepeso");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Bajar");
 	        }
 	        if (total >= 30 && total <= 34.9){
-	        	salida2.setText("ObesidadI");
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a-a2;
+	        	salida2.setText("Obesidad I");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Bajar");
 	        }
 	        if (total >= 35 && total <= 39.9){
-	        	salida2.setText("ObesidadII");
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a-a2;
+	        	salida2.setText("Obesidad II");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Bajar");
 	        }
 	        if (total >= 40){
-	        	salida2.setText("ObesidadIII");
+	        	a2 = 19*((a1)*(a1));
+	        	a2 = a-a2;
+	        	salida2.setText("Obesidad III");
+	        	String pesoBajar = String.valueOf(a2);
+	        	salida4.setText(pesoBajar);
+	        	p4.setText("Peso a Bajar");
 	        }
-	        String imc = String.valueOf(total);
+	        int numero = (int)total;
+	        String imc = String.valueOf(numero);
 	        salida1.setText(imc);
 	        salida3.setText(nombre);	         
 	      }
@@ -290,6 +314,10 @@
 		texto1.setText("");
 		texto2.setText("");
 		texto3.setText("");
+		salida1.setText("");
+		salida2.setText("");
+		salida3.setText("");
+		salida4.setText("");
 	}
 
 
