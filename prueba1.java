@@ -16,14 +16,16 @@ import javax.swing.JTextField;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.lang.Math;
 
 public class prueba1 extends JFrame  {
 
 	private JPanel panel1;
-	private JTextField caja1;
-	private JTextField caja2;
-	private String numeroDecimal,binario;
-	private int a, modulo;
+	private JTextField caja1, caja2;	
+	private static String numeroDecimal,binario,binario2, numero, binario3;
+	private int a,modulo;
+	private Double a1,a3,modulo2;
+	private JLabel salida1, salida2;
 
 	/**
 	 * Launch the application.
@@ -74,7 +76,12 @@ public class prueba1 extends JFrame  {
 		JButton boton1 = new JButton("Convertir ");
 		boton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+			numeroDecimal = caja1.getText();
+			numero = caja2.getText();
+			if (isNumerico(numeroDecimal)){
 				actionBinary();
+			}				
 			}
 		});
 		boton1.setBounds(325, 28, 117, 25);
@@ -84,17 +91,17 @@ public class prueba1 extends JFrame  {
 		etiqueta2.setBounds(12, 60, 115, 15);
 		panel1.add(etiqueta2);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setBounds(139, 60, 79, 15);
-		panel1.add(label_1);
+		salida1 = new JLabel("");
+		salida1.setBounds(139, 60, 79, 15);
+		panel1.add(salida1);
 		
 		JLabel etiqueta4 = new JLabel(".");
 		etiqueta4.setBounds(219, 60, 15, 15);
 		panel1.add(etiqueta4);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(244, 60, 70, 15);
-		panel1.add(lblNewLabel);
+		salida2 = new JLabel("");
+		salida2.setBounds(244, 60, 70, 15);
+		panel1.add(salida2);
 		
 		JButton boton2 = new JButton("Salir");
 		boton2.addActionListener(new ActionListener() {
@@ -105,22 +112,69 @@ public class prueba1 extends JFrame  {
 		boton2.setBounds(163, 135, 117, 25);		
 		panel1.add(boton2);
 
-
-
+		JButton botonBorrar = new JButton("Borrar");
+		botonBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				numero = caja2.getText();
+				clearTxtField();
+			}
+		});
+		botonBorrar.setBounds(325, 55, 117, 25);
+		panel1.add(botonBorrar);
 
 	}
-
-	public void actionBinary() {
-     	numeroDecimal = caja1.getText();
+//metodos
+	public void actionBinary() {  	       
      	String binario = "";
-     	int a = Integer.parseInt(numeroDecimal);     
+     	int a = Integer.parseInt(numeroDecimal);
+     	double a1 = Double.parseDouble(numero);     
      	while (a > 0){
      		modulo = (a%2);
      		binario = modulo + binario;
      		a = a/2;
-     	}
-	    //salida1.setText(binario);     	
+     	}     	
+	    //salida1.setText(binario);     		    
+	    salida1.setText(binario);
 	    JOptionPane.showMessageDialog(null, "El numero binario es " + binario);
+
      }
+
+     public void clearTxtField() {      
+     	double a1 = Double.parseDouble(numero);
+     	binario2 = "";     	
+
+     	while(a1 == 0 ){
+     	double modulo2 = Math.abs(a1) * 2;
+     	int a2 = (int) modulo2;
+     		int a2 = 1;
+     		modulo2 = 1.0;
+     	binario2 = a2 + binario2;
+     	a1 = a2 - modulo2;
+     }
+
+     	JOptionPane.showMessageDialog(null, binario2);
+		//caja1.setText("");
+		//salida1.setText("");
+		/*texto2.setText("");
+		texto3.setText("");
+		salida1.setText("");
+		salida2.setText("");
+		salida3.setText("");
+		salida4.setText("");*/
+	}
+
+	public static Boolean isNumerico(String caja1){
+	  	try {	  	
+      	int a = Integer.parseInt(numeroDecimal);
+      	if (a <= 0 ){
+      	return true;      		
+      	}
+      }
+      catch(NumberFormatException nfe){
+        	JOptionPane.showMessageDialog(null, "Debes agregar un numero a la caja de texto");
+      	    return false;
+        }
+        return true;
+      }
 
 }
