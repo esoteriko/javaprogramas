@@ -76,9 +76,10 @@ import java.lang.Math;
 			public void actionPerformed(ActionEvent e) {
 
 			numeroDecimal = caja1.getText();
-			//numero = caja2.getText();
+			numero = caja2.getText();
 			if (isNumerico(numeroDecimal, sueldo)){
 				actionBinary(numeroDecimal);
+				actionBinaryDecimal(numero);
 			}				
 			}
 		});
@@ -192,7 +193,17 @@ public void actionBinary(String caja1) {
      }
 
 public void actionBinaryDecimal(String caja2){
-	salida2.setText(caja2);
+	String binary= "";
+	int b = Integer.parseInt(numero);
+	double primerNumero = b * 2;
+	while(primerNumero != b && primerNumero != 1)
+	{
+		Int prueba = (int) primerNumero;
+		binary = prueba + binary;
+		int c = primerNumero - prueba;
+		primerNumero = c;
+		primerNumero *= 2;
+	}
 }  
 
 public void actionNomina(String caja3){
